@@ -51,7 +51,7 @@ void posordem_(arvore arv){
     if(!arv)return;
     arvore aux = arv;
     do {
-        while (aux) {
+        while (aux->esq && aux->dir){
             if(aux->esq){
                 aux = aux ->esq;
                 continue;
@@ -67,4 +67,12 @@ void posordem_(arvore arv){
             printf("%s\n",aux->dado.nome);
         }
     } while(p);
+}
+t_arvore * criaA(){
+  t_arvore * no = (t_arvore*)malloc(sizeof(t_arvore));
+  if(no)no->esq=no->dir=NULL;
+  return no;
+}
+void inserir(){
+
 }

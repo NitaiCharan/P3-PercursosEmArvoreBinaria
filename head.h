@@ -27,3 +27,4 @@ t_elemento pop(t_pilha ** pilha);
 void push(t_pilha ** pilha,t_elemento dado);
 
 pilha criaP();
+t_arvore * criaA();
