@@ -73,6 +73,16 @@ t_arvore * criaA(){
   if(no)no->esq=no->dir=NULL;
   return no;
 }
-void inserir(){
-
+int inserir(t_arvore * tree, int n){
+    int ok;
+    if(tree){
+        if((tree=criaA()))return 0;
+        return tree->dado.n=n;
+    }
+    if(tree->dado.n < n)ok = inserir(tree->dir,n);
+    else{
+        if (tree->dado.n > n)ok = inserir(tree->esq,n);
+        else ok=0;
+    }
+    return ok;
 }
