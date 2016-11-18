@@ -6,7 +6,7 @@ void preordem_(arvore arv){
     arvore aux = arv;
     do {
         while (aux) {
-            push(&p,aux->dado);
+            push(&p,aux->dado.n);
             if(aux->esq){
                 aux = aux ->esq;
                 continue;
@@ -17,8 +17,8 @@ void preordem_(arvore arv){
             }
         }
         if(p){
-            aux->dado=pop(&p);
-            printf("%s\n",aux->dado.nome);
+            aux->dado.n=pop(&p);
+            printf("%d\n",aux->dado.n);
         }
     } while(p);
 }
@@ -34,15 +34,15 @@ void inordem_(arvore arv){
                 entrou = 1;
                 continue;
             }
-            push(&p,aux->dado);
+            push(&p,aux->dado.n);
             if(aux->dir && !entrou){
                 aux = aux->dir;
                 continue;
             }
         }
         if(p){
-            aux->dado=pop(&p);
-            printf("%s\n",aux->dado.nome);
+            aux->dado.n=pop(&p);
+            printf("%d\n",aux->dado.n);
         }
     } while(p);
 }
@@ -60,11 +60,11 @@ void posordem_(arvore arv){
                 aux = aux->dir;
                 continue;
             }
-            push(&p,aux->dado);
+            push(&p,aux->dado.n);
         }
         if(p){
-            aux->dado=pop(&p);
-            printf("%s\n",aux->dado.nome);
+            aux->dado.n=pop(&p);
+            printf("%d\n",aux->dado.n);
         }
     } while(p);
 }

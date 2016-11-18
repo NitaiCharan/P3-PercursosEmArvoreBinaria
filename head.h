@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 typedef struct dado{
-    char nome[100];
+    int n;
 }t_elemento;
 
 typedef struct noA{
@@ -23,8 +23,8 @@ typedef t_pilha * pilha;
 void preordem_(arvore arv);
 void inordem_(arvore arv);
 void posordem_(arvore arv);
-t_elemento pop(t_pilha ** pilha);
-void push(t_pilha ** pilha,t_elemento dado);
+int pop(t_pilha ** pilha);
+void push(t_pilha ** pilha,int dado);
 
 pilha criaP();
 t_arvore * criaA();

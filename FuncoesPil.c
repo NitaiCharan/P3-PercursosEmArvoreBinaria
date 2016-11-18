@@ -1,15 +1,15 @@
 #include "head.h"
 
-void push(t_pilha ** pilha,t_elemento dado){
+void push(t_pilha ** pilha,int dado){
     t_pilha * aux = malloc (sizeof(t_pilha));
-    aux->dado = dado;
+    aux->dado.n = dado;
     aux->prox = *pilha;
     * pilha = aux;
 }
-t_elemento pop(t_pilha ** pilha){
-    t_elemento dado;
+int pop(t_pilha ** pilha){
+    int dado;
     t_pilha * aux = (*pilha)->prox;
-    dado = (*pilha)->dado;
+    dado = (*pilha)->dado.n;
     free(*pilha);
     * pilha = aux;
     return dado;
