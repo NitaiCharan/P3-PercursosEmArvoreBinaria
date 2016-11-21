@@ -29,3 +29,9 @@ void push(t_pilha ** ,t_arvore * );
 pilha criaP();
 t_arvore * criaA();
 void inserir(t_arvore ** tree, char carac);
+
+#if defined(_WIN32) || defined(WIN32)
+#define LIMPATELA system("cls")
+#else
+#define LIMPATELA system("clear")
+#endif
