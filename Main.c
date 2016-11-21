@@ -12,7 +12,22 @@ int main(int argc, char const *argv[]) {
     scanf("%c",&op);
 
     switch (op) {
-        case '1':{
+        case '1':{			
+            char c='a';
+            //int n =scanf("%d", &n);
+            t_arvore * arv= NULL;
+            FILE *open = fopen("nitai","r");
+            do {
+                if(c!=-1 && c <='z' && c>='a'){
+                    c=fgetc(open);
+                    if(c <='z' && c>='a')inserir(&arv,c);
+                }
+                if(c!=-1)fgetc(open);
+            } while(c!=-1);
+
+			preordem_(arv);
+            fclose(open);
+            getchar();
             break;
         }
         case '2':{
@@ -34,6 +49,22 @@ int main(int argc, char const *argv[]) {
             break;
         }
         case '3':{
+
+            char c='a';
+            //int n =scanf("%d", &n);
+            t_arvore * arv= NULL;
+            FILE *open = fopen("nitai","r");
+            do {
+                if(c!=-1 && c <='z' && c>='a'){
+                    c=fgetc(open);
+                    if(c <='z' && c>='a')inserir(&arv,c);
+                }
+                if(c!=-1)fgetc(open);
+            } while(c!=-1);
+
+            posordem_(arv);
+            fclose(open);
+            getchar();
             break;
         }
         case '0':{
