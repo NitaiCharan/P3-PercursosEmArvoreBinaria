@@ -1,88 +1,37 @@
 #include"head.h"
 
 void preordem_(arvore arv){
-    pilha p = criaP();
-    if(!arv)return;
-    arvore aux = arv;
-    do {
-        while (aux) {
-            push(&p,aux->dado.n);
-            if(aux->esq){
-                aux = aux ->esq;
-                continue;
-            }
-            else if(aux->dir){
-                aux = aux->dir;
-                continue;
-            }
-        }
-        if(p){
-            aux->dado.n=pop(&p);
-            printf("%d\n",aux->dado.n);
-        }
-    } while(p);
 }
-void inordem_(arvore arv){
-    pilha p = criaP();
-    if(!arv)return;
-    arvore aux = arv;
+void inordem_ (arvore arv) {
+    pilha p=criaP();
+    arvore aux;
+    aux = arv;
+    if (!arv) return;
     do {
-        int entrou =0;
-        while (aux) {
-            if(aux->esq){
-                aux = aux ->esq;
-                entrou = 1;
-                continue;
-            }
-            push(&p,aux->dado.n);
-            if(aux->dir && !entrou){
-                aux = aux->dir;
-                continue;
-            }
+        while (aux != NULL) {
+            push(&p, aux);
+            aux = (aux->esq);
         }
-        if(p){
-            aux->dado.n=pop(&p);
-            printf("%d\n",aux->dado.n);
+        if (p) {
+            aux = pop(&p);
+            printf("%c ", aux->dado.carac);
+            aux = (aux->dir);
         }
-    } while(p);
+    } while (p->prox);
+    printf("\n");
 }
 void posordem_(arvore arv){
-    pilha p = criaP();
-    if(!arv)return;
-    arvore aux = arv;
-    do {
-        while (aux->esq && aux->dir){
-            if(aux->esq){
-                aux = aux ->esq;
-                continue;
-            }
-            else if(aux->dir){
-                aux = aux->dir;
-                continue;
-            }
-            push(&p,aux->dado.n);
-        }
-        if(p){
-            aux->dado.n=pop(&p);
-            printf("%d\n",aux->dado.n);
-        }
-    } while(p);
 }
 t_arvore * criaA(){
   t_arvore * no = (t_arvore*)malloc(sizeof(t_arvore));
   if(no)no->esq=no->dir=NULL;
   return no;
 }
-int inserir(t_arvore * tree, int n){
-    int ok;
-    if(tree){
-        if((tree=criaA()))return 0;
-        return tree->dado.n=n;
+void inserir(t_arvore ** tree, char carac){
+    if(!(*tree)){
+        (*tree)=criaA();
+        (*tree)->dado.carac=carac;
     }
-    if(tree->dado.n < n)ok = inserir(tree->dir,n);
-    else{
-        if (tree->dado.n > n)ok = inserir(tree->esq,n);
-        else ok=0;
-    }
-    return ok;
+    else if((*tree)->dado.carac > carac) inserir(&((*tree)->esq),carac);
+    else inserir(&((*tree)->dir),carac);
 }

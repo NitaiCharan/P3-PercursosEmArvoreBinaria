@@ -1,17 +1,20 @@
 #include"head.h"
 
 int main(int argc, char const *argv[]) {
-    int c=getc(stdin);
+    char c='a';
+    //int n =scanf("%d", &n);
+    t_arvore * arv= NULL;
     FILE *open = fopen("nitai","r");
     do {
-        do {
-            printf("%c",c);
-        } while(c != EOF && c!=',');
-        printf(",");
-        if(c!=EOF)fgetc(open);
-    } while(c!=EOF);
-    printf("\n");
+        if(c!=-1 && c <='z' && c>='a'){
+            c=fgetc(open);
+            if(c <='z' && c>='a')inserir(&arv,c);
+        }
+        if(c!=-1)fgetc(open);
+    } while(c!=-1);
+
+    inordem_(arv);
     fclose(open);
 
-    return 0;
+    exit(0);
 }

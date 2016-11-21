@@ -1,18 +1,18 @@
 #include "head.h"
 
-void push(t_pilha ** pilha,int dado){
+void push(t_pilha ** pilha,t_arvore * no){
     t_pilha * aux = malloc (sizeof(t_pilha));
-    aux->dado.n = dado;
-    aux->prox = *pilha;
+    aux->noArv = no;
+    aux->prox = * pilha;
     * pilha = aux;
 }
-int pop(t_pilha ** pilha){
-    int dado;
+t_arvore * pop(t_pilha ** pilha){
+    t_arvore * no;
     t_pilha * aux = (*pilha)->prox;
-    dado = (*pilha)->dado.n;
+    no = (*pilha)->noArv;
     free(*pilha);
     * pilha = aux;
-    return dado;
+    return no;
 }
 
 pilha criaP(){

@@ -3,7 +3,7 @@
 #include <string.h>
 
 typedef struct dado{
-    int n;
+    char carac;
 }t_elemento;
 
 typedef struct noA{
@@ -13,7 +13,7 @@ typedef struct noA{
 }t_arvore;
 
 typedef struct noP{
-    t_elemento dado;
+    t_arvore * noArv;
     struct noP * prox;
 }t_pilha;
 
@@ -21,11 +21,11 @@ typedef struct noP{
 typedef t_arvore * arvore;
 typedef t_pilha * pilha;
 
-void preordem_(arvore arv);
-void inordem_(arvore arv);
-void posordem_(arvore arv);
-int pop(t_pilha ** pilha);
-void push(t_pilha ** pilha,int dado);
-
+void preordem_(arvore );
+void inordem_(arvore );
+void posordem_(arvore );
+t_arvore * pop(t_pilha ** pilha);
+void push(t_pilha ** ,t_arvore * );
 pilha criaP();
 t_arvore * criaA();
+void inserir(t_arvore ** tree, char carac);
