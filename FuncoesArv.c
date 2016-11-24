@@ -7,7 +7,7 @@ void preordem_(arvore arv){
     aux = arv;
     do {
         while (aux != NULL) {
-            printf("%c ", aux->dado.carac);
+            if(aux->dado.carac != -1)printf("%c ", aux->dado.carac);
             push(&p, aux);
             aux = (aux->esq);
         }
@@ -31,7 +31,7 @@ void inordem_ (arvore arv) {
         }
         if (p) {
             aux = pop(&p);
-            printf("%c ", aux->dado.carac);
+            if(aux->dado.carac != -1)printf("%c ", aux->dado.carac);
             aux = (aux->dir);
         }
     } while (p->prox || aux);
@@ -53,19 +53,19 @@ void posordem_(arvore arv){
 			}
             else if (aux->dir){
 				push(&p, aux);
-				aux = (aux->dir);	
+				aux = (aux->dir);
 				entrou = 1;
 				continue;
 			}
 			entrou = 0;
         }
         if (p) {
-            printf("%c ", aux->dado.carac);
+            if(aux->dado.carac != -1)printf("%c ", aux->dado.carac);
 			if(p->prox && p->noArv->esq == aux)p->noArv->esq=NULL;
 			else if(p->prox && p->noArv->dir == aux)p->noArv->dir=NULL;
             aux = pop(&p);
 			entrou = 1;
-			
+
         }
     } while (p && (p->prox || aux));
     printf("\n");

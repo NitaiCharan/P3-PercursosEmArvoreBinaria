@@ -12,18 +12,18 @@ int main(int argc, char const *argv[]) {
     scanf("%c",&op);
 
     switch (op) {
-        case '1':{			
+        case '1':{
             char c='a';
             //int n =scanf("%d", &n);
             t_arvore * arv= NULL;
             FILE *open = fopen("nitai","r");
             do {
-                if(c!=-1 && c <='z' && c>='a'){
+                if(!feof(open) && c !=';' && c!=','){
                     c=fgetc(open);
-                    if(c <='z' && c>='a')inserir(&arv,c);
+                    if(c !=';' && c!=',')inserir(&arv,c);
                 }
-                if(c!=-1)fgetc(open);
-            } while(c!=-1);
+                if(!feof(open))fgetc(open);
+            } while(!feof(open));
 
 			preordem_(arv);
             fclose(open);
@@ -36,12 +36,12 @@ int main(int argc, char const *argv[]) {
             t_arvore * arv= NULL;
             FILE *open = fopen("nitai","r");
             do {
-                if(c!=-1 && c <='z' && c>='a'){
+                if(!feof(open) && c !=';' && c!=','){
                     c=fgetc(open);
-                    if(c <='z' && c>='a')inserir(&arv,c);
+                    if(c !=';' && c!=',')inserir(&arv,c);
                 }
-                if(c!=-1)fgetc(open);
-            } while(c!=-1);
+                if(!feof(open))fgetc(open);
+            } while(!feof(open));
 
             inordem_(arv);
             fclose(open);
@@ -55,12 +55,12 @@ int main(int argc, char const *argv[]) {
             t_arvore * arv= NULL;
             FILE *open = fopen("nitai","r");
             do {
-                if(c!=-1 && c <='z' && c>='a'){
+                if(!feof(open) && c !=';' && c!=','){
                     c=fgetc(open);
-                    if(c <='z' && c>='a')inserir(&arv,c);
+                    if(c !=';' && c!=',')inserir(&arv,c);
                 }
-                if(c!=-1)fgetc(open);
-            } while(c!=-1);
+                if(!feof(open))fgetc(open);
+            } while(!feof(open));
 
             posordem_(arv);
             fclose(open);
