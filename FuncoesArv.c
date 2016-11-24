@@ -38,6 +38,37 @@ void inordem_ (arvore arv) {
     printf("\n");
 }
 void posordem_(arvore arv){
+    if (!arv) return;
+    pilha p=criaP();
+    arvore aux;
+    aux = arv;
+	int entrou;
+    do {
+        while (aux != NULL && entrou) {
+            if(aux->esq){
+            	push(&p, aux);
+				aux = (aux->esq);
+				entrou = 1;
+				continue;
+			}
+            else if (aux->dir){
+				push(&p, aux);
+				aux = (aux->dir);	
+				entrou = 1;
+				continue;
+			}
+			entrou = 0;
+        }
+        if (p) {
+            printf("%c ", aux->dado.carac);
+			if(p->prox && p->noArv->esq == aux)p->noArv->esq=NULL;
+			else if(p->prox && p->noArv->dir == aux)p->noArv->dir=NULL;
+            aux = pop(&p);
+			entrou = 1;
+			
+        }
+    } while (p && (p->prox || aux));
+    printf("\n");
 }
 t_arvore * criaA(){
   t_arvore * no = (t_arvore*)malloc(sizeof(t_arvore));
