@@ -42,7 +42,7 @@ void posordem_(arvore arv){
     pilha p=criaP();
     arvore aux;
     aux = arv;
-	int entrou;
+	int entrou=1;
     do {
         while (aux != NULL && entrou) {
             if(aux->esq){
@@ -61,8 +61,8 @@ void posordem_(arvore arv){
         }
         if (p) {
             if(aux->dado.carac != -1)printf("%c ", aux->dado.carac);
-			if(p->prox && p->noArv->esq == aux)p->noArv->esq=NULL;
-			else if(p->prox && p->noArv->dir == aux)p->noArv->dir=NULL;
+			if(p->noArv->esq == aux)p->noArv->esq=NULL;
+			else if(p->noArv->dir == aux)p->noArv->dir=NULL;
             aux = pop(&p);
 			entrou = 1;
 

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 typedef struct dado{
     char carac;
 }t_elemento;
@@ -29,6 +30,8 @@ void push(t_pilha ** ,t_arvore * );
 pilha criaP();
 t_arvore * criaA();
 void inserir(t_arvore ** tree, char carac);
+void gotoxy(int coluna, int linha);
+
 
 #if defined(_WIN32) || defined(WIN32)
 #define LIMPATELA system("cls")
