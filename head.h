@@ -4,7 +4,7 @@
 
 
 typedef struct dado{
-    char carac;
+    int carac;
 }t_elemento;
 
 typedef struct noA{
@@ -29,8 +29,9 @@ t_arvore * pop(t_pilha ** pilha);
 void push(t_pilha ** ,t_arvore * );
 pilha criaP();
 t_arvore * criaA();
-void inserir(t_arvore ** tree, char carac);
+void inserir(t_arvore ** tree, int carac);
 void gotoxy(int coluna, int linha);
+void exibirGraficamente(t_arvore * tree, int col, int lin, int desloc);
 
 
 #if defined(_WIN32) || defined(WIN32)

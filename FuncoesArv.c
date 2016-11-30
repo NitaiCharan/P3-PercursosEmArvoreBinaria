@@ -7,7 +7,7 @@ void preordem_(arvore arv){
     aux = arv;
     do {
         while (aux != NULL) {
-            if(aux->dado.carac != -1)printf("%c ", aux->dado.carac);
+            if(aux->dado.carac != -1)printf("%d ", aux->dado.carac);
             push(&p, aux);
             aux = (aux->esq);
         }
@@ -31,7 +31,7 @@ void inordem_ (arvore arv) {
         }
         if (p) {
             aux = pop(&p);
-            if(aux->dado.carac != -1)printf("%c ", aux->dado.carac);
+            if(aux->dado.carac != -1)printf("%d ", aux->dado.carac);
             aux = (aux->dir);
         }
     } while (p->prox || aux);
@@ -60,7 +60,7 @@ void posordem_(arvore arv){
 			entrou = 0;
         }
         if (p) {
-            if(aux->dado.carac != -1)printf("%c ", aux->dado.carac);
+            if(aux->dado.carac != -1)printf("%d ", aux->dado.carac);
 			if(p->noArv->esq == aux)p->noArv->esq=NULL;
 			else if(p->noArv->dir == aux)p->noArv->dir=NULL;
             aux = pop(&p);
@@ -75,7 +75,7 @@ t_arvore * criaA(){
   if(no)no->esq=no->dir=NULL;
   return no;
 }
-void inserir(t_arvore ** tree, char carac){
+void inserir(t_arvore ** tree, int carac){
     if(!(*tree)){
         (*tree)=criaA();
         (*tree)->dado.carac=carac;

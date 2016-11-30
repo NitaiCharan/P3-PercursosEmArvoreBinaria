@@ -1,4 +1,5 @@
 #include"head.h"
+
 #ifdef WIN32
 #include <windows.h>
 void gotoxy(int coluna, int linha){
@@ -16,62 +17,86 @@ void gotoxy(int x, int y){
 void exibirGraficamente(t_arvore * tree, int col, int lin, int desloc){
     if (tree == NULL)return;
         gotoxy(col,lin);
-        printf("%c",tree->dado.carac);
+        printf("%d",tree->dado.carac);
     if (tree->esq != NULL)exibirGraficamente(tree->esq,col-desloc,lin+2,desloc/2+1);
     if (tree->dir != NULL)exibirGraficamente(tree->dir,col+desloc,lin+2,desloc/2+1);
 }
 
 int main(int argc, char const *argv[]) {
-    char op;
-    LIMPATELA;
-
-    char c='a';
-    //int n =scanf("%d", &n);
-    t_arvore * arv= NULL;
+	int n=0;
     FILE *open = fopen("nitai","r");
-    do {
-        if(!feof(open) && c !=';' && c!=',' && c!=-1){
-            c=fgetc(open);
-            if(c !=';' && c!=',' && c!=-1)inserir(&arv,c);
-        }
-        if(!feof(open))fgetc(open);
-    } while(!feof(open));
+	char op;
 
-    exibirGraficamente(arv,20,10,3);
+	t_arvore * arv=NULL;
+    LIMPATELA;
+	while(fscanf(open,"%d",&n)==1){
+        inserir(&arv,n);
+		fgetc(open);
+	}	
+
     printf("\n\n");
+	do{
+	
+	
+			LIMPATELA;
+			printf("ALUNO:\t\tNITAI CHARAN ALVARES PEREIRA\n"); 
+			printf("DISCIPLINA:\tESTRUTURA DE DADOS I\n");
+			printf("PROFESSOR:\tWALACE BONFIM\n\n");
+			printf("1 – INSERIR\n");
+			printf("2 – REMOVER APENAS UM NÓ\n");
+			printf("3 – PESQUISAR\n");
+			printf("4 – ESVAZIAR A ÁRVORE\n");
+			printf("5 – EXIBIR A ÁRVORE\n");
+			printf("0 – SAIR\n\n");
+			
+			
+			
+			printf("\t\tEDITOR DE ÁRVORE\n\n");
+			printf("\n Digite uma opção: ");
+			scanf("%c",&op);
+			fclose(open);
+			getchar();
 
-    printf("Estudo de Árvores(somos nozes)-Estrutura de Dados 1\n");
-    printf("1- Pré-ordem.\n");
-    printf("2- Ordem Simétrica\n");
-    printf("3- Pós-ordem\n");
-    printf("0- Sair\n");
-    printf("\n Digite uma opção: ");
-    scanf("%c",&op);
-
-    fclose(open);
-    getchar();
 
 
+			switch (op) {
+				case '1':{
+					preordem_(arv);
+					printf("Digite algo: ");
+					getchar();
+					break;
+				}
+				case '2':{
+					inordem_(arv);
+					printf("Digite algo: ");
+					getchar();
+					break;
+				}
+				case '3':{
+					posordem_(arv);
+					printf("Digite algo: ");
+					getchar();
+					break;
+				}
+				case '4':{
+					break;
+				}
+				case '5':{
+					LIMPATELA;
+					exibirGraficamente(arv,20,0,3);
+					printf("\n\nDigite algo: ");
+					getchar();
+					break;
+				}
+				case '0':{
+					exit(0);
+					break;
+				}
+				default:{
+					printf("\n\nOPÇÂO INCORRETA!!! TENTE NOVAMENTE: ");
+					
+				}
+			}
 
-    switch (op) {
-        case '1':{
-			preordem_(arv);
-            break;
-        }
-        case '2':{
-            inordem_(arv);
-            break;
-        }
-        case '3':{
-            posordem_(arv);
-            break;
-        }
-        case '0':{
-            break;
-        }
-        default:{
-
-        }
-    }
-    exit(0);
+	}while(1);
 }
