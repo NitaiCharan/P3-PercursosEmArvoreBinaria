@@ -62,24 +62,12 @@ int main(int argc, char const *argv[]) {
 
 			switch (op) {
 				case '1':{
-					preordem_(arv);
-					printf("Digite algo: ");
-                    flush;
-					getchar();
 					break;
 				}
 				case '2':{
-					inordem_(arv);
-					printf("Digite algo: ");
-                    flush;
-					getchar();
 					break;
 				}
 				case '3':{
-					posordem_(arv);
-					printf("Digite algo: ");
-                    flush;
-                    getchar();
 					break;
 				}
 				case '4':{
@@ -88,8 +76,18 @@ int main(int argc, char const *argv[]) {
 				case '5':{
 					LIMPATELA;
 					exibirGraficamente(arv,20,0,3);
+					
+					printf("\n\nPre-Ordem: \n");
+					preordem_(arv);
+					printf("\n");
+					printf("In-Ordem: \n");
+					inordem_(arv);
+					printf("\n");
+					printf("Pos-Ordem: \n");
+					posordem_(arv);
+					printf("\n");
 					printf("\n\nDigite algo: ");
-                    flush;
+                    			flush;
 					getchar();
 					break;
 				}
