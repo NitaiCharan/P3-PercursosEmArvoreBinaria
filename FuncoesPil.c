@@ -6,6 +6,7 @@ void push(t_pilha ** pilha,t_arvore * no){
     aux->prox = * pilha;
     * pilha = aux;
 }
+
 t_arvore * pop(t_pilha ** pilha){
     t_arvore * no;
     t_pilha * aux = (*pilha)->prox;

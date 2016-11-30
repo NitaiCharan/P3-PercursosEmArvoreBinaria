@@ -32,14 +32,15 @@ int main(int argc, char const *argv[]) {
 	while(fscanf(open,"%d",&n)==1){
         inserir(&arv,n);
 		fgetc(open);
-	}	
+	}
+    fclose(open);
 
     printf("\n\n");
 	do{
-	
-	
+
+
 			LIMPATELA;
-			printf("ALUNO:\t\tNITAI CHARAN ALVARES PEREIRA\n"); 
+			printf("ALUNO:\t\tNITAI CHARAN ALVARES PEREIRA\n");
 			printf("DISCIPLINA:\tESTRUTURA DE DADOS I\n");
 			printf("PROFESSOR:\tWALACE BONFIM\n\n");
 			printf("1 – INSERIR\n");
@@ -48,13 +49,13 @@ int main(int argc, char const *argv[]) {
 			printf("4 – ESVAZIAR A ÁRVORE\n");
 			printf("5 – EXIBIR A ÁRVORE\n");
 			printf("0 – SAIR\n\n");
-			
-			
-			
+
+
+
 			printf("\t\tEDITOR DE ÁRVORE\n\n");
 			printf("\n Digite uma opção: ");
+            flush;
 			scanf("%c",&op);
-			fclose(open);
 			getchar();
 
 
@@ -63,19 +64,22 @@ int main(int argc, char const *argv[]) {
 				case '1':{
 					preordem_(arv);
 					printf("Digite algo: ");
+                    flush;
 					getchar();
 					break;
 				}
 				case '2':{
 					inordem_(arv);
 					printf("Digite algo: ");
+                    flush;
 					getchar();
 					break;
 				}
 				case '3':{
 					posordem_(arv);
 					printf("Digite algo: ");
-					getchar();
+                    flush;
+                    getchar();
 					break;
 				}
 				case '4':{
@@ -85,6 +89,7 @@ int main(int argc, char const *argv[]) {
 					LIMPATELA;
 					exibirGraficamente(arv,20,0,3);
 					printf("\n\nDigite algo: ");
+                    flush;
 					getchar();
 					break;
 				}
@@ -94,7 +99,7 @@ int main(int argc, char const *argv[]) {
 				}
 				default:{
 					printf("\n\nOPÇÂO INCORRETA!!! TENTE NOVAMENTE: ");
-					
+
 				}
 			}
 

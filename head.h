@@ -36,6 +36,9 @@ void exibirGraficamente(t_arvore * tree, int col, int lin, int desloc);
 
 #if defined(_WIN32) || defined(WIN32)
 #define LIMPATELA system("cls")
+#define flush fflush(stdin)
 #else
 #define LIMPATELA system("clear")
+#include <stdio_ext.h>
+#define flush __fpurge(stdin)
 #endif
