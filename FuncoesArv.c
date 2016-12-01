@@ -83,3 +83,41 @@ void inserir(t_arvore ** tree, int carac){
     else if((*tree)->dado.carac > carac) inserir(&((*tree)->esq),carac);
     else inserir(&((*tree)->dir),carac);
 }
+
+void delArv(t_arvore * arv){
+    if (!arv) return;
+    pilha p=criaP();
+    arvore aux;
+    aux = arv;
+	int entrou=1;
+    do {
+        while (aux != NULL && entrou) {
+            if(aux->esq){
+            	push(&p, aux);
+				aux = (aux->esq);
+				entrou = 1;
+				continue;
+			}
+            else if (aux->dir){
+				push(&p, aux);
+				aux = (aux->dir);
+				entrou = 1;
+				continue;
+			}
+			entrou = 0;
+        }
+        if (p) {
+			if(p->noArv->esq == aux){
+				free(p->noArv->esq);
+				p->noArv->esq=NULL;
+			}
+			else if(p->noArv->dir == aux){
+				free(p->noArv->dir);
+				p->noArv->dir=NULL;	
+			}
+            aux = pop(&p);
+			entrou = 1;
+        }
+    } while (p && (p->prox || aux));
+    printf("\n");
+}

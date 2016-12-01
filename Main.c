@@ -82,10 +82,18 @@ int main(int argc, char const *argv[]) {
 					break;
 				}
 				case '4':{
+					delArv(arv);
+					free(arv);
+					arv=NULL;
 					break;
 				}
 				case '5':{
 					LIMPATELA;
+					if(!arv){
+						printf("Estrutura encontra-se vazia!!!Digite algo: ");	
+						getchar();
+						break;
+					}
 					exibirGraficamente(arv,20,0,3);
 					
 					printf("\n\nPre-Ordem: \n");

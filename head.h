@@ -22,6 +22,7 @@ typedef struct noP{
 typedef t_arvore * arvore;
 typedef t_pilha * pilha;
 
+void delArv(t_arvore *);
 void preordem_(arvore );
 void inordem_(arvore );
 void posordem_(arvore );
