@@ -62,6 +62,17 @@ int main(int argc, char const *argv[]) {
 
 			switch (op) {
 				case '1':{
+					LIMPATELA;
+					int nu;
+					printf("Digite um número: ");
+					scanf("%d",&nu);	
+
+        			inserir(&arv,nu);
+					LIMPATELA;	
+					exibirGraficamente(arv,20,0,3);
+                   	flush;
+					getchar();
+                   	flush;
 					break;
 				}
 				case '2':{
@@ -87,7 +98,7 @@ int main(int argc, char const *argv[]) {
 					posordem_(arv);
 					printf("\n");
 					printf("\n\nDigite algo: ");
-                    			flush;
+                   	flush;
 					getchar();
 					break;
 				}
@@ -97,7 +108,7 @@ int main(int argc, char const *argv[]) {
 				}
 				default:{
 					printf("\n\nOPÇÂO INCORRETA!!! TENTE NOVAMENTE: ");
-
+					getchar();
 				}
 			}
 
