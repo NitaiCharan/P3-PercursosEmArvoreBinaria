@@ -70,19 +70,7 @@ void posordem_(arvore arv){
     } while (p && (p->prox || aux));
     printf("\n");
 }
-t_arvore * criaA(){
-  t_arvore * no = (t_arvore*)malloc(sizeof(t_arvore));
-  if(no)no->esq=no->dir=NULL;
-  return no;
-}
-void inserir(t_arvore ** tree, int carac){
-    if(!(*tree)){
-        (*tree)=criaA();
-        (*tree)->dado.carac=carac;
-    }
-    else if((*tree)->dado.carac > carac) inserir(&((*tree)->esq),carac);
-    else inserir(&((*tree)->dir),carac);
-}
+
 
 void delArv(t_arvore * arv){
     if (!arv) return;
@@ -111,6 +99,7 @@ void delArv(t_arvore * arv){
 				free(p->noArv->esq);
 				p->noArv->esq=NULL;
 			}
+	
 			else if(p->noArv->dir == aux){
 				free(p->noArv->dir);
 				p->noArv->dir=NULL;	
@@ -120,4 +109,27 @@ void delArv(t_arvore * arv){
         }
     } while (p && (p->prox || aux));
     printf("\n");
+}
+t_arvore * criaA(){
+  t_arvore * no = (t_arvore*)malloc(sizeof(t_arvore));
+  if(no)no->esq=no->dir=NULL;
+  return no;
+}
+void inserir(t_arvore ** tree, int carac){
+    if(!(*tree)){
+        (*tree)=criaA();
+        (*tree)->dado.carac=carac;
+    }
+    else if((*tree)->dado.carac > carac) inserir(&((*tree)->esq),carac);
+    else inserir(&((*tree)->dir),carac);
+}
+int buscaArv(t_arvore ** tree, int carac){
+	int conf=0;
+	if(!(*tree))return 0;
+    if((*tree)->dado.carac ==  carac){
+		conf=1;
+    }
+    else if((*tree)->dado.carac > carac)conf =  buscaArv(&((*tree)->esq),carac);
+    else conf=buscaArv(&((*tree)->dir),carac);
+	return conf;	
 }

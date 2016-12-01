@@ -79,6 +79,21 @@ int main(int argc, char const *argv[]) {
 					break;
 				}
 				case '3':{
+					int nu;
+					LIMPATELA;
+					printf("Digite para busca: ");
+					scanf("%d",&nu);
+					nu=buscaArv(&arv,nu);
+					if(nu){
+						printf("O valor encontra-se na estrutura!!\n");
+						flush;
+						getchar();
+						break;
+					}
+					printf("O valor não esta na estrutura!!!\n");
+					flush;
+					getchar();
+					
 					break;
 				}
 				case '4':{
