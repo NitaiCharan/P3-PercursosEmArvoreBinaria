@@ -124,6 +124,10 @@ void inserir(t_arvore ** tree, int carac){
     else inserir(&((*tree)->dir),carac);
 }
 t_arvore * buscaArv(t_arvore ** tree, int carac){//Função volta 0 ou localização do pai ou avô.
+	//Volta 0 caso não encontre nó
+	//Volta 1 caso seja nó
+	//Volta 2 caso nó seje folha
+	//Volta 3 caso nó tenha apenas um filho
 	int entrou=0;
 	t_arvore * conf=NULL;
 	//Caso não encontre nó
@@ -136,16 +140,17 @@ t_arvore * buscaArv(t_arvore ** tree, int carac){//Função volta 0 ou localiza�
 	//Pai
 	if(!entrou){
 		if((*tree)->esq){
-		
-				if((*tree)->esq->dado.carac ==  carac){
+				if(((*tree)->esq->dado.carac ==  carac)&&(*tree)->esq->esq==NULL &&(*tree)->esq->dir==NULL){
 						conf=(*tree);			
-						entrou = 1;
-				} 
-				else if((*tree)->dir) if((*tree)->dir->dado.carac ==  carac){
-						conf=(*tree);	
-						entrou = 1;
+						entrou = 2;
 				} 
 		} 
+		else if((*tree)->dir){
+				if(((*tree)->dir->dado.carac ==  carac)&&(*tree)->dir->esq==NULL &&(*tree)->dir->dir==NULL){
+						conf=(*tree);	
+						entrou = 2;
+				} 
+		}
 	}
 	//Avô
 	else if(!entrou){
@@ -153,27 +158,27 @@ t_arvore * buscaArv(t_arvore ** tree, int carac){//Função volta 0 ou localiza�
 					if(((*tree)->esq->esq)&&!((*tree)->esq->dir)){
 							if((*tree)->esq->esq->dado.carac ==  carac){
 								conf=(*tree);		
-								entrou = 1;
+								entrou = 3;
 							} 
 					}
 					else if(((*tree)->esq->dir)&&!((*tree)->esq->esq)){
 							if((*tree)->esq->esq->dado.carac ==  carac){
 								conf=(*tree);		
-								entrou = 1;
+								entrou = 3;
 							} 
 					}
 			}
-			else{
+			else if((*tree)->dir){
 					if(((*tree)->dir->esq)&&!((*tree)->dir->dir)){
 							if((*tree)->esq->esq->dado.carac ==  carac){
 								conf=(*tree);		
-								entrou = 1;
+								entrou = 3;
 							} 
 					}
 					else if(((*tree)->dir->dir)&&!((*tree)->dir->esq)){
 							if((*tree)->esq->esq->dado.carac ==  carac){
 								conf=(*tree);		
-								entrou = 1;
+								entrou = 3;
 							} 
 					}
 			}
@@ -187,9 +192,6 @@ t_arvore * buscaArv(t_arvore ** tree, int carac){//Função volta 0 ou localiza�
 }
 t_arvore * rmNoArv(t_arvore * tree,int dado){	
 	t_arvore * ele;
+	
 	return ele;
 }
-
-
-
-
