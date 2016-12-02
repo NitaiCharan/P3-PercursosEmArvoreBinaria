@@ -83,7 +83,7 @@ int main(int argc, char const *argv[]) {
 					LIMPATELA;
 					printf("Digite para busca: ");
 					scanf("%d",&ele);
-					nu=buscaArv(&arv,ele);
+					nu=pesqArv(&arv,ele);
 					if(nu) printf("O valor encontra-se na estrutura!!\n\nDigite algo para continuar: ");
 					else printf("O valor não esta na estrutura!!!\n\nDigite algo para continuar: ");
 					flush;

@@ -190,6 +190,14 @@ t_arvore * buscaArv(t_arvore ** tree, int carac){//Função volta 0 ou localiza�
 	}
 	return conf;	
 }
+t_arvore * pesqArv(t_arvore ** tree, int carac){
+	t_arvore * conf=NULL;
+	if(!(*tree))return 0;
+    if((*tree)->dado.carac ==  carac)conf=(*tree);
+    else if((*tree)->dado.carac > carac)conf =  buscaArv(&((*tree)->esq),carac);
+    else conf=buscaArv(&((*tree)->dir),carac);
+	return conf;	
+}
 t_arvore * rmNoArv(t_arvore * tree,int dado){	
 	t_arvore * ele;
 	
