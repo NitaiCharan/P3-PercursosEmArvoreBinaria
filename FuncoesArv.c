@@ -123,13 +123,73 @@ void inserir(t_arvore ** tree, int carac){
     else if((*tree)->dado.carac > carac) inserir(&((*tree)->esq),carac);
     else inserir(&((*tree)->dir),carac);
 }
-int buscaArv(t_arvore ** tree, int carac){
-	int conf=0;
+t_arvore * buscaArv(t_arvore ** tree, int carac){//Função volta 0 ou localização do pai ou avô.
+	int entrou=0;
+	t_arvore * conf=NULL;
+	//Caso não encontre nó
 	if(!(*tree))return 0;
-    if((*tree)->dado.carac ==  carac){
-		conf=1;
-    }
-    else if((*tree)->dado.carac > carac)conf =  buscaArv(&((*tree)->esq),carac);
-    else conf=buscaArv(&((*tree)->dir),carac);
+	//Nó
+    else if((*tree)->dado.carac ==  carac){
+		conf=(*tree);
+		entrou = 1;
+	} 
+	//Pai
+	if(!entrou){
+		if((*tree)->esq){
+		
+				if((*tree)->esq->dado.carac ==  carac){
+						conf=(*tree);			
+						entrou = 1;
+				} 
+				else if((*tree)->dir) if((*tree)->dir->dado.carac ==  carac){
+						conf=(*tree);	
+						entrou = 1;
+				} 
+		} 
+	}
+	//Avô
+	else if(!entrou){
+			if((*tree)->esq){
+					if(((*tree)->esq->esq)&&!((*tree)->esq->dir)){
+							if((*tree)->esq->esq->dado.carac ==  carac){
+								conf=(*tree);		
+								entrou = 1;
+							} 
+					}
+					else if(((*tree)->esq->dir)&&!((*tree)->esq->esq)){
+							if((*tree)->esq->esq->dado.carac ==  carac){
+								conf=(*tree);		
+								entrou = 1;
+							} 
+					}
+			}
+			else{
+					if(((*tree)->dir->esq)&&!((*tree)->dir->dir)){
+							if((*tree)->esq->esq->dado.carac ==  carac){
+								conf=(*tree);		
+								entrou = 1;
+							} 
+					}
+					else if(((*tree)->dir->dir)&&!((*tree)->dir->esq)){
+							if((*tree)->esq->esq->dado.carac ==  carac){
+								conf=(*tree);		
+								entrou = 1;
+							} 
+					}
+			}
+	}
+	//Não localizou no filho ou neto. Deve continuar	
+	if(!entrou){
+			if((*tree)->dado.carac > carac)conf =  buscaArv(&((*tree)->esq),carac);
+			else if((*tree)->dado.carac < carac)conf =  buscaArv(&((*tree)->dir),carac);
+	}
 	return conf;	
 }
+t_arvore * rmNoArv(t_arvore * tree,int dado){	
+	t_arvore * ele;
+	return ele;
+}
+
+
+
+

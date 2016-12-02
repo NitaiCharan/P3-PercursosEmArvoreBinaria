@@ -56,8 +56,7 @@ int main(int argc, char const *argv[]) {
 			printf("\n Digite uma opção: ");
             flush;
 			scanf("%c",&op);
-			getchar();
-
+			flush;
 
 
 			switch (op) {
@@ -79,18 +78,14 @@ int main(int argc, char const *argv[]) {
 					break;
 				}
 				case '3':{
-					int nu;
+					t_arvore * nu;
+					int ele;
 					LIMPATELA;
 					printf("Digite para busca: ");
-					scanf("%d",&nu);
-					nu=buscaArv(&arv,nu);
-					if(nu){
-						printf("O valor encontra-se na estrutura!!\n");
-						flush;
-						getchar();
-						break;
-					}
-					printf("O valor não esta na estrutura!!!\n");
+					scanf("%d",&ele);
+					nu=buscaArv(&arv,ele);
+					if(nu) printf("O valor encontra-se na estrutura!!\n\nDigite algo para continuar: ");
+					else printf("O valor não esta na estrutura!!!\n\nDigite algo para continuar: ");
 					flush;
 					getchar();
 					
@@ -131,6 +126,7 @@ int main(int argc, char const *argv[]) {
 				}
 				default:{
 					printf("\n\nOPÇÂO INCORRETA!!! TENTE NOVAMENTE: ");
+					flush;
 					getchar();
 				}
 			}
