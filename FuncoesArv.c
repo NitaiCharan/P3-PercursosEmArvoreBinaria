@@ -38,37 +38,11 @@ void inordem_ (arvore arv) {
     printf("\n");
 }
 void posordem_(arvore arv){
-    if (!arv) return;
-    pilha p=criaP();
-    arvore aux;
-    aux = arv;
-	int entrou=1;
-    do {
-        while (aux != NULL && entrou) {
-            if(aux->esq){
-            	push(&p, aux);
-				aux = (aux->esq);
-				entrou = 1;
-				continue;
-			}
-            else if (aux->dir){
-				push(&p, aux);
-				aux = (aux->dir);
-				entrou = 1;
-				continue;
-			}
-			entrou = 0;
-        }
-        if (p) {
-            if(aux->dado.carac != -1)printf("%d ", aux->dado.carac);
-			if(p->noArv->esq == aux)p->noArv->esq=NULL;
-			else if(p->noArv->dir == aux)p->noArv->dir=NULL;
-            aux = pop(&p);
-			entrou = 1;
-
-        }
-    } while (p && (p->prox || aux));
-    printf("\n");
+	if (arv!=NULL) {
+		posordem_(arv->esq);
+		posordem_(arv->dir);
+		printf("%d ", arv->dado.carac);
+	}	
 }
 
 
@@ -123,83 +97,96 @@ void inserir(t_arvore ** tree, int carac){
     else if((*tree)->dado.carac > carac) inserir(&((*tree)->esq),carac);
     else inserir(&((*tree)->dir),carac);
 }
-t_arvore * buscaArv(t_arvore ** tree, int carac){//Função volta 0 ou localização do pai ou avô.
-	//Volta 0 caso não encontre nó
-	//Volta 1 caso seja nó
-	//Volta 2 caso nó seje folha
-	//Volta 3 caso nó tenha apenas um filho
-	int entrou=0;
+t_arvore * pesqArv(t_arvore * tree, int carac){
 	t_arvore * conf=NULL;
+	int entrou=0;
 	//Caso não encontre nó
-	if(!(*tree))return 0;
-	//Nó
-    else if((*tree)->dado.carac ==  carac){
-		conf=(*tree);
-		entrou = 1;
-	} 
-	//Pai
+	if(!tree)return 0;
+	//Pai e verifica folhas
 	if(!entrou){
-		if((*tree)->esq){
-				if(((*tree)->esq->dado.carac ==  carac)&&(*tree)->esq->esq==NULL &&(*tree)->esq->dir==NULL){
-						conf=(*tree);			
+		if(tree->esq){
+				if((tree->esq->dado.carac ==  carac) && tree->esq->esq && tree->esq->dir==NULL){
+						conf=tree;
+						entrou = 2;
+				}
+				else if((tree->esq->dado.carac ==  carac)&&tree->esq->esq==NULL  && tree->esq->dir){
+						conf=tree;
+						entrou = 2;
+				}
+				else if((tree->esq->dado.carac ==  carac) && tree->esq->esq==NULL && tree->esq->dir==NULL){
+						conf=tree;			
+						entrou = 1;
+				}
+		}
+		if(tree->dir){
+				if((tree->dir->dado.carac ==  carac)&&tree->dir->esq &&tree->dir->dir==NULL){
+						conf=tree;	
 						entrou = 2;
 				} 
-		} 
-		else if((*tree)->dir){
-				if(((*tree)->dir->dado.carac ==  carac)&&(*tree)->dir->esq==NULL &&(*tree)->dir->dir==NULL){
-						conf=(*tree);	
+				else if((tree->dir->dado.carac ==  carac)&&tree->dir->esq==NULL  && tree->dir->dir){
+						conf=tree;	
+						entrou = 2;
+				} 
+				else if((tree->dir->dado.carac ==  carac) && tree->dir->esq==NULL && tree->dir->dir==NULL){
+						conf=tree;			
+						entrou = 1;
+				}
+		}
+	}
+    if(!entrou){
+		if(tree->dado.carac > carac)conf =  pesqArv(tree->esq,carac);	
+		else conf=pesqArv(tree->dir,carac);
+	}
+	return conf;
+}
+int rmNoArv(t_arvore * tree,int carac){	
+	t_arvore * dir,*esq;
+	int entrou=0;
+	if(!entrou){
+		if(tree->esq){
+				if((tree->esq->dado.carac ==  carac) && tree->esq->esq && tree->esq->dir==NULL){
+						esq = (tree->esq->esq); 
+						free(tree->esq);
+						tree->esq = esq;
+						
+						entrou = 2;
+				}
+				else if((tree->esq->dado.carac ==  carac)&&tree->esq->esq==NULL  && tree->esq->dir){
+						dir = tree->esq->dir; 
+						free(tree->esq);
+						tree->dir = dir;
+						
+						entrou = 2;
+				} else if((tree->esq->dado.carac ==  carac) && tree->esq->esq==NULL && tree->esq->dir==NULL){ 
+						free(tree->esq);	
+						tree->esq=NULL;
+						
 						entrou = 2;
 				} 
 		}
+		if(tree->dir){
+				if((tree->dir->dado.carac ==  carac)&&tree->dir->esq &&tree->dir->dir==NULL){
+						esq = (tree->dir->esq); 
+						free(tree->dir);
+						tree->esq = esq;
+						
+						entrou = 2;
+				} 
+				else if((tree->dir->dado.carac ==  carac)&&tree->dir->esq==NULL  && tree->dir->dir){
+						dir = tree->dir->dir; 
+						free(tree->dir);
+						tree->dir = dir;
+						
+						entrou = 2;
+				} 
+				else if((tree->dir->dado.carac ==  carac) && tree->dir->esq==NULL && tree->dir->dir==NULL){
+						free(tree->dir);	
+						tree->dir=NULL;
+						
+						entrou = 1;
+				}
+		}
 	}
-	//Avô
-	else if(!entrou){
-			if((*tree)->esq){
-					if(((*tree)->esq->esq)&&!((*tree)->esq->dir)){
-							if((*tree)->esq->esq->dado.carac ==  carac){
-								conf=(*tree);		
-								entrou = 3;
-							} 
-					}
-					else if(((*tree)->esq->dir)&&!((*tree)->esq->esq)){
-							if((*tree)->esq->esq->dado.carac ==  carac){
-								conf=(*tree);		
-								entrou = 3;
-							} 
-					}
-			}
-			else if((*tree)->dir){
-					if(((*tree)->dir->esq)&&!((*tree)->dir->dir)){
-							if((*tree)->esq->esq->dado.carac ==  carac){
-								conf=(*tree);		
-								entrou = 3;
-							} 
-					}
-					else if(((*tree)->dir->dir)&&!((*tree)->dir->esq)){
-							if((*tree)->esq->esq->dado.carac ==  carac){
-								conf=(*tree);		
-								entrou = 3;
-							} 
-					}
-			}
-	}
-	//Não localizou no filho ou neto. Deve continuar	
-	if(!entrou){
-			if((*tree)->dado.carac > carac)conf =  buscaArv(&((*tree)->esq),carac);
-			else if((*tree)->dado.carac < carac)conf =  buscaArv(&((*tree)->dir),carac);
-	}
-	return conf;	
-}
-t_arvore * pesqArv(t_arvore ** tree, int carac){
-	t_arvore * conf=NULL;
-	if(!(*tree))return 0;
-    if((*tree)->dado.carac ==  carac)conf=(*tree);
-    else if((*tree)->dado.carac > carac)conf =  buscaArv(&((*tree)->esq),carac);
-    else conf=buscaArv(&((*tree)->dir),carac);
-	return conf;	
-}
-t_arvore * rmNoArv(t_arvore * tree,int dado){	
-	t_arvore * ele;
-	
-	return ele;
+
+	return entrou;
 }

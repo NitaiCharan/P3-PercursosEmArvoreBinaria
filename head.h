@@ -33,9 +33,8 @@ t_arvore * criaA();
 void inserir(t_arvore ** tree, int carac);
 void gotoxy(int coluna, int linha);
 void exibirGraficamente(t_arvore * tree, int col, int lin, int desloc);
-t_arvore * buscaArv(t_arvore **,int);
-t_arvore * rmNoArv(t_arvore * tree,int dado);
-t_arvore * pesqArv(t_arvore ** tree, int carac);
+int rmNoArv(t_arvore * tree,int dado);
+t_arvore * pesqArv(t_arvore * tree, int carac);
 
 #if defined(_WIN32) || defined(WIN32)
 #define LIMPATELA system("cls")

@@ -75,15 +75,29 @@ int main(int argc, char const *argv[]) {
 					break;
 				}
 				case '2':{
+					t_arvore * nu;
+					int n=0;
+					LIMPATELA;
+					printf("Entre com um número: ");
+					scanf("%d",&n);
+					nu=pesqArv(arv,n);
+					if(nu) printf("O valor encontra-se na estrutura!!\n\n");
+					else printf("O valor não esta na estrutura!!!\n\n");
+					n=rmNoArv(nu,n);
+					if(n)printf("\nNó removido com sucesso!!!\nDigite algo para continuar: ");
+					else printf("\nNó não removido!! Motivos? Só o Cão sabe.\n");
+					flush;
+					getchar();
+					
 					break;
 				}
 				case '3':{
 					t_arvore * nu;
 					int ele;
 					LIMPATELA;
-					printf("Digite para busca: ");
+					printf("Digite para pesquisar: ");
 					scanf("%d",&ele);
-					nu=pesqArv(&arv,ele);
+					nu=pesqArv(arv,ele);
 					if(nu) printf("O valor encontra-se na estrutura!!\n\nDigite algo para continuar: ");
 					else printf("O valor não esta na estrutura!!!\n\nDigite algo para continuar: ");
 					flush;
@@ -104,7 +118,7 @@ int main(int argc, char const *argv[]) {
 						getchar();
 						break;
 					}
-					exibirGraficamente(arv,20,0,3);
+					exibirGraficamente(arv,40,0,3);
 					
 					printf("\n\nPre-Ordem: \n");
 					preordem_(arv);
