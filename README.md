@@ -1,13 +1,42 @@
-# EXERCÍCIO DE PERCURSOS EM ÁRVORE BINÁRIA
+# Prática ÁRVORES
 
-Com o objetivo de desenvolver habilidades de codificação de algoritmos de percursos em árvores binárias, desenvolver um programa em C que:
+Estrutura de Dados
 
-  * implemente as funções NÃO RECURSIVAS
-    * void preordem_ (arvore arv)
-    * void inordem_ (arvore arv) (já implementada nos slides das aulas de árvores)
-    * void posordem_ (arvore arv)
-  * crie uma árvore BINÁRIA DE PESQUISA do tipo t_arvore, implementando-a de forma encadeada, com o conteúdo lido do arquivo de entrada de dados.
-  * exibir o conteúdo da árvore utilizando as funções não recursivas implementadas:
-    * pré
-    * in
-    * pós-ordem
+Árvores Binárias de Pesquisa
+
+Professor: Walace Bonfim
+
+#### Instruções para a resolução e entrega:
+ * 1 – O trabalho é individual.
+ * 2 – Deve ser entregue no UnipêVirtual. 
+
+#### Faça um programa em C, que:
+ * a) crie uma árvore BINÁRIA DE PESQUISA do tipo t_arvore, implementando-a de forma encadeada, com o conteúdo lido do arquivo de entrada de dados.
+ * b) o t_elemento da árvore deverá ser uma estrutura que armazene o endereço do nó e o dado que será lido do arquivo de entrada
+ * c) exiba o seguinte menu de opções:
+
+```
+   ALUNO: NOME COMPLETO DO ALUNO
+   DISCIPLINA: ESTRUTURA DE DADOS I
+   PROFESSOR: WALACE BONFIM
+   EDITOR DE ÁRVORE
+   1 - INSERIR
+   2 - REMOVER APENAS UM NÓ
+   3 - PESQUISAR
+   4 - ESVAZIAR A ÁRVORE
+   5 - EXIBIR A ÁRVORE
+   0 - SAIR
+   
+   DIGITE SUA OPÇÃO:
+```
+
+ * c) a árvore inicial deve ser gerada em memória a partir dos dados armazenado em um ARQUIVO de texto (no formato csv que separa as entradas por vírgulas).
+ * d) leia a opção do usuário;
+ * e) execute a opção escolhida pelo usuário;
+ * f) após a execução de cada opção, o programa deve retornar ao menu para nova opção do usuário ou o encerramento do programa.
+ 
+#### Opções:
+ * a) a opção 1, inserir, deve inserir um elemento segundo as regras de árvore binária de pesquisa.
+ * b) a opção 2, remover, deve pegar o conteúdo do nó a ser removido. Caso não exista, dar mensagem correspondente.
+ * c) a opção 3, pesquisar, deve dizer se o dado armazenado no t_elemento está presente ou não na árvore.
+ * d) a opção 5, exibir, deve exibir em todas as formas, pré/in/pós-ordem e graficamente, ambos os dados existentes no t_elemento.
